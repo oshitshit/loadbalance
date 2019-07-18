@@ -3,6 +3,7 @@ package com.aliware.tianchi;
 import com.aliware.tianchi.strategy.AResStrategy;
 import com.aliware.tianchi.strategy.RandomStrategy;
 import com.aliware.tianchi.strategy.UserLoadBalanceStrategy;
+import com.aliware.tianchi.strategy.RandomWithWeightStategy;
 import org.apache.dubbo.common.URL;
 import org.apache.dubbo.rpc.Invocation;
 import org.apache.dubbo.rpc.Invoker;
