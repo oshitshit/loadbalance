@@ -25,19 +25,14 @@ public class RandomWithWeightStategy extends AbstractStrategy {
 
     @Override
     public int select(URL url, Invocation invocation) {
-        int smallActiveCount;
-        int mediumActiveCount;
-        int largeActiveCount;
-
-        if (dataFrom.equals("client")) {
-            smallActiveCount = (int) Constants.longAdderSmall.longValue();
-            mediumActiveCount = (int) Constants.longAdderMedium.longValue() << 1;
-            largeActiveCount = (int) Constants.longAdderLarge.longValue() * 3;
-        } else {
-            smallActiveCount = Constants.activeThreadCount.get("small");
-            mediumActiveCount = Constants.activeThreadCount.get("medium") << 1;
-            largeActiveCount = Constants.activeThreadCount.get("large") * 3;
-        }
+     
+        int smallActiveCount = (int) Constants.longAdderSmall.longValue();
+        int mediumActiveCount = (int) Constants.longAdderMedium.longValue();
+        int largeActiveCount = (int) Constants.longAdderLarge.longValue();
+        
+        smallActiveCount =  smallActiveCount == 0 ? 1 : smallActiveCount;
+        mediumActiveCount = mediumActiveCount == 0 ? 2 : mediumActiveCount<<1;
+        largeActiveCount = largeActiveCount == 0 ? 3 : largeActiveCount*3;
 
         int randNumber = rand.nextInt(smallActiveCount + mediumActiveCount + largeActiveCount);
         if (randNumber < smallActiveCount) {
