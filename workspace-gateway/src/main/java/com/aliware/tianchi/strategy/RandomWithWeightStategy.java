@@ -31,10 +31,10 @@ public class RandomWithWeightStategy extends AbstractStrategy {
         int largeActiveCount = (int) Constants.longAdderLarge.longValue();
         
         smallActiveCount =  smallActiveCount == 0 ? 1 : smallActiveCount;
-        mediumActiveCount = mediumActiveCount == 0 ? 2 : mediumActiveCount<<1;
-        largeActiveCount = largeActiveCount == 0 ? 3 : largeActiveCount*3;
+        mediumActiveCount = (mediumActiveCount == 0 ? 1 : mediumActiveCount)<<1;
+        largeActiveCount = (largeActiveCount == 0 ? 1 : largeActiveCount)*3;
 
-        int randNumber = rand.nextInt(smallActiveCount + mediumActiveCount + largeActiveCount);
+        int randNumber = rand.nextInt((int)(smallActiveCount + mediumActiveCount + largeActiveCount));
         if (randNumber < smallActiveCount) {
             return 0;
         } else if (randNumber >= smallActiveCount && randNumber < smallActiveCount + mediumActiveCount) {
